@@ -46,13 +46,47 @@ function generatePlaylist(guardians, songs) {
                 return song.genre === genre;
             })
             .map(song => {
-                return song.title + "by" + song.artist;
+                return song.title + song.artist;
             });
         }
         return playlists; 
     }
 
+    //function to display the generated playlists on the webpage
+
+    function displayPlaylists(playlists){
+        const playlistsDiv = document.getElementById('playlists'); //fetches playlist div from the HTML
+
+        for (let guardian in playlists) {
+            const playlist = playlists[guardian]; // Get the playlist of the current guardian
+            
+            // Create a div for the guardian's playlist
+            const guardianDiv = document.createElement('div');
+            guardianDiv.className = 'playlist';
+            
+            // Create a header for the guardian's playlist
+            const guardianHeader = document.createElement('h2');
+            guardianHeader.textContent = guardian + "'s Playlist";
+            guardianDiv.appendChild(guardianHeader);
+            
+            // Format and create a paragraph for the guardian's playlist
+            const formattedPlaylist = playlist.map(song => {
+                const splitSong = song.split('by');
+                return '<i class="song-title"><strong>' + splitSong[0] + '</strong></i> by ' + splitSong[1];
+            }).join('<br>');
+            
+            const playlistText = document.createElement('p');
+            playlistText.innerHTML = formattedPlaylist;
+            
+            guardianDiv.appendChild(playlistText); // Append the formatted playlist to the guardian's div
+    
+            playlistsDiv.appendChild(guardianDiv); // Append the guardian's div to the playlists div
+        }
+    }
+
 // Call generatePlaylist and display the playlists for each Guardian
-console.log(generatePlaylist(guardians, songs));
+const playlists = generatePlaylist(guardians, songs);
+
+displayPlaylists(playlists);
 
 
