@@ -11,8 +11,8 @@ const songs = [
     { title: "Come and Get Your Love", artist: "Redbone", genre: "Rock" },
     { title: "I'm Not in Love", artist: "10cc", genre: "Pop" },
     { title: "Fooled Around and Fell in Love", artist: "Elvin Bishop", genre: "Rock" },
-    { ttile: "Dangeruosly in Love", artist: "Beyonce", genre: "R&B"},
-    { title: "Good at Goodbyes", artist: "Sam Smith", genre: "Pop",},   
+    { title: "Good at Goodbyes", artist: "Sam Smith", genre: "Pop",},
+    { title: "Bust Your Windows", artist: "Jazmine Sullivan", genre: "R&B"},  
     { title: "Carry on Wayward Son", artist: "Kansas", genre: "Rock",},
     { title: "Nude", artist: "Radiohead", genre: "Indie",},
     { title: "Am I Okay", artist: "Megan Moroney", genre: "Country",},
@@ -46,7 +46,7 @@ function generatePlaylist(guardians, songs) {
                 return song.genre === genre;
             })
             .map(song => {
-                return song.title + song.artist;
+                return song.title + "by" + song.artist;
             });
         }
         return playlists; 
